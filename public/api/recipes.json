@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "name": "Pasta Carbonara",
+    "ingredients": " 200g pasta, 1 egg, cream etc",
+    "instructions": "cook pasta blah blah",
+    "difficultyLevel": "easy",
+    "cookingTime": "30 mins",
+    "imageUrl": "/assets/carbonara.jpg"
+  },
+  {
+    "id": "2",
+    "name": "Mushroom Risotto",
+    "ingredients": " 200g rice, mushrooms etc",
+    "instructions": "cook rice blah blah",
+    "difficultyLevel": "medium",
+    "cookingTime": "40 mins",
+    "imageUrl": "/assets/carbonara.jpg"
+  },
+  {
+    "id": "3",
+    "name": "Grilled Salmon",
+    "ingredients": " 200g salmon, salt, pepper etc",
+    "instructions": "grill salmon",
+    "difficultyLevel": "medium",
+    "cookingTime": "35 mins",
+    "imageUrl": "/assets/carbonara.jpg"
+  }
+]
