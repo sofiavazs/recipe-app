@@ -10,7 +10,7 @@ const RecipesList: React.FC<Props> = ({ recipes }) => {
   return (
     <>
       {recipes ? (
-        recipes.map((item, i) => (
+        recipes.map((recipe, i) => (
           <Box pad={"1rem"}>
             <Card
               key={i}
@@ -19,11 +19,11 @@ const RecipesList: React.FC<Props> = ({ recipes }) => {
               width="small"
               background="light-1"
             >
-              <CardHeader>{item.name}</CardHeader>
-              <CardBody pad="medium">{item.instructions}</CardBody>
+              <CardHeader>{recipe.name}</CardHeader>
+              <CardBody pad="medium">{recipe.instructions}</CardBody>
               <CardFooter>
-                {item.difficultyLevel}
-                {item.cookingTime}
+                {recipe.difficultyLevel}
+                {recipe.cookingTime}
               </CardFooter>
             </Card>
           </Box>
