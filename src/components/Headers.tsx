@@ -6,9 +6,8 @@ const Headers: React.FC = () => {
     <Header
       background={"#CBDFD4"}
       pad={{ left: "medium", right: "small", vertical: "small" }}
-      elevation={"medium"}
     >
-      HEADER
+      RECEITAS
     </Header>
   );
 };

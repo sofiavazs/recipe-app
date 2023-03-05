@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Card, CardBody, CardFooter, CardHeader } from "grommet";
 import { Recipe } from "../../common/interfaces";
 
@@ -7,31 +7,72 @@ interface Props {
 }
 
 const RecipesList: React.FC<Props> = ({ recipes }) => {
+  const [search, setSearch] = useState<string>("");
+  const [filteredResults, setFilteredResults] = useState([]);
+
+  const handleSearch = (searchValue) => {
+    if (searchValue !== "") {
+      setSearch(searchValue);
+      const filteredRecipes = recipes.filter((item) => {
+        return Object.values(item)
+          .join("")
+          .toLowerCase()
+          .includes(searchValue.toLowerCase());
+      });
+      setFilteredResults(filteredRecipes);
+    }
+  };
+  useEffect(() => {}, [search, filteredResults]);
+
   return (
-    <>
-      {recipes ? (
-        recipes.map((recipe, i) => (
-          <Box pad={"1rem"}>
-            <Card
-              key={i}
-              pad="small"
-              height="small"
-              width="small"
-              background="light-1"
-            >
-              <CardHeader>{recipe.name}</CardHeader>
-              <CardBody pad="medium">{recipe.instructions}</CardBody>
-              <CardFooter>
-                {recipe.difficultyLevel}
-                {recipe.cookingTime}
-              </CardFooter>
-            </Card>
-          </Box>
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
-    </>
+    <Box direction="column">
+      <Box pad={{ left: "30vw" }} width={"70vw"}>
+        <label htmlFor="search">Search</label>
+        <input
+          type={"search"}
+          placeholder="Pesquisar Receitas"
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+      </Box>
+      <Box width={"100vw"} direction={"row"} justify={"center"}>
+        {search.length > 1
+          ? filteredResults.map((filteredItem) => (
+              <Card
+                key={filteredItem.id}
+                pad={"1rem"}
+                margin={"1rem"}
+                height={"13rem"}
+                width={"13rem"}
+                background="light-1"
+              >
+                <CardHeader>{filteredItem.name}</CardHeader>
+                <CardBody pad="medium">{filteredItem.instructions}</CardBody>
+                <CardFooter>
+                  {filteredItem.difficultyLevel}
+                  {filteredItem.cookingTime}
+                </CardFooter>
+              </Card>
+            ))
+          : recipes &&
+            recipes.map((recipe, i) => (
+              <Card
+                key={i}
+                pad={"1rem"}
+                margin={"1rem"}
+                height={"13rem"}
+                width={"13rem"}
+                background="light-1"
+              >
+                <CardHeader>{recipe.name}</CardHeader>
+                <CardBody pad="medium">{recipe.instructions}</CardBody>
+                <CardFooter>
+                  {recipe.difficultyLevel}
+                  {recipe.cookingTime}
+                </CardFooter>
+              </Card>
+            ))}
+      </Box>
+    </Box>
   );
 };
 
