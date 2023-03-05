@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import { Grommet } from "grommet";
+import "../styles/globals.css";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const theme = {

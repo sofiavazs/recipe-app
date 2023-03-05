@@ -36,3 +36,28 @@ button {
   padding: 0.5rem 1rem;
   font-weight: bold;
 }
+
+.search-container {
+  z-index: -4;
+}
+
+label[for="search"] {
+  color: #333;
+  font-size: 3rem;
+  font-weight: 600;
+  align-self: center;
+  margin-bottom: 3rem;
+}
+
+input[type="search"] {
+  height: 3.25rem;
+  min-width: 35vw;
+  align-self: center;
+  border: none;
+  opacity: 0.75;
+  border-radius: 4px;
+  background-image: url("../public/assets/search-icon.svg");
+  background-size: 1.25rem;
+  background-position: 1rem;
+  background-repeat: no-repeat;
+}

@@ -26,13 +26,16 @@ const RecipesList: React.FC<Props> = ({ recipes }) => {
 
   return (
     <Box direction="column">
-      <Box pad={{ left: "30vw" }} width={"70vw"}>
-        <label htmlFor="search">Search</label>
-        <input
-          type={"search"}
-          placeholder="Pesquisar Receitas"
-          onChange={(e) => handleSearch(e.target.value)}
-        />
+      <Box
+        className="search-container"
+        width={"100vw"}
+        height={"50vh"}
+        justify={"center"}
+        pad={{ top: "2rem" }}
+        background="url('/assets/foodheroimage.jpg')"
+      >
+        <label htmlFor="search">Pesquisar Receitas</label>
+        <input type={"search"} onChange={(e) => handleSearch(e.target.value)} />
       </Box>
       <Box width={"100vw"} direction={"row"} justify={"center"}>
         {search.length > 1

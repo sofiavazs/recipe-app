@@ -1,13 +1,17 @@
-import { Header } from "grommet";
+import { Header, Heading } from "grommet";
 import React from "react";
 
 const Headers: React.FC = () => {
   return (
     <Header
-      background={"#CBDFD4"}
+      background={"#fdfdfd"}
       pad={{ left: "medium", right: "small", vertical: "small" }}
+      elevation={"medium"}
+      justify={"center"}
     >
-      RECEITAS
+      <Heading level={1} size={"2rem"} margin="none" textAlign="center">
+        Receitas
+      </Heading>
     </Header>
   );
 };
