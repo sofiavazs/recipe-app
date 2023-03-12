@@ -37,8 +37,15 @@ button {
   font-weight: bold;
 }
 
-.search-container {
-  z-index: -4;
+header.main-header {
+  justify-content: space-between;
+}
+
+button.add-button {
+  padding: 8px;
+  background-color: #2d9e3c;
+  border: none;
+  cursor: pointer;
 }
 
 label[for="search"] {
@@ -60,4 +67,5 @@ input[type="search"] {
   background-size: 1.25rem;
   background-position: 1rem;
   background-repeat: no-repeat;
+  text-indent: 2.5rem;
 }

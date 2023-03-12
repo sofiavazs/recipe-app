@@ -27,7 +27,6 @@ const RecipesList: React.FC<Props> = ({ recipes }) => {
   return (
     <Box direction="column">
       <Box
-        className="search-container"
         width={"100vw"}
         height={"50vh"}
         justify={"center"}
