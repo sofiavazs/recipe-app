@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 //Defining context
 export const ContextUI = createContext(undefined);
@@ -18,3 +18,24 @@ export function ContextUIProvider({ children }) {
     </ContextUI.Provider>
   );
 }
+
+export const FormContext = createContext(undefined);
+
+export function FormProvider({ children }) {
+  const [data, setData] = useState({});
+
+  const setFormValues = (values) => {
+    setData((prevValues) => ({
+      ...prevValues,
+      ...values,
+    }));
+  };
+
+  return (
+    <FormContext.Provider value={{ data, setFormValues }}>
+      {children}
+    </FormContext.Provider>
+  );
+}
+
+export const useFormData = () => useContext(FormContext);

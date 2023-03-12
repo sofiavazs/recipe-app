@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { Button, Header, Heading } from "grommet";
+import { Box, Button, Header, Heading, Text } from "grommet";
+import { FormClose } from "grommet-icons";
 import { ContextUI } from "../../common/context";
 import Modal from "./Modal";
 import NewRecipeForm from "./NewRecipeForm";
@@ -28,19 +29,38 @@ const Headers: React.FC = () => {
       </Header>
       {openModal && (
         <Modal>
-          <div
+          <Box
             style={{
-              width: "300px",
-              height: "300px",
+              minWidth: "500px",
+              minHeight: "300px",
               backgroundColor: "white",
               borderRadius: "10px",
-              display: "grid",
-              placeItems: "center",
             }}
           >
-            <NewRecipeForm />
-            <button onClick={() => setOpenModal(false)}>Close Modal</button>
-          </div>
+            <Box
+              direction="row"
+              align="center"
+              width={"100%"}
+              as="header"
+              elevation="small"
+              justify="between"
+            >
+              <Text margin={{ left: "small" }}>Adicionar Receita</Text>
+              <Button
+                icon={<FormClose />}
+                onClick={() => setOpenModal(false)}
+              />
+            </Box>
+            <Box
+              pad={"1rem"}
+              style={{
+                border: "1px solid red",
+              }}
+              direction={"column"}
+            >
+              <NewRecipeForm />
+            </Box>
+          </Box>
         </Modal>
       )}
     </>

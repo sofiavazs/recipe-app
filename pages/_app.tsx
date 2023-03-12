@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import { Grommet } from "grommet";
-import { ContextUIProvider } from "../common/context";
+import { FormProvider, ContextUIProvider } from "../common/context";
 import "../styles/globals.css";
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -28,7 +28,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <React.StrictMode>
         <ContextUIProvider>
-          <Component {...pageProps} />
+          <FormProvider>
+            <Component {...pageProps} />
+          </FormProvider>
         </ContextUIProvider>
       </React.StrictMode>
     </Grommet>
