@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Button, Header, Heading } from "grommet";
 import { ContextUI } from "../../common/context";
 import Modal from "./Modal";
+import NewRecipeForm from "./NewRecipeForm";
 
 const Headers: React.FC = () => {
   const { openModal, setOpenModal } = useContext(ContextUI);
@@ -37,7 +38,7 @@ const Headers: React.FC = () => {
               placeItems: "center",
             }}
           >
-            This is Modal
+            <NewRecipeForm />
             <button onClick={() => setOpenModal(false)}>Close Modal</button>
           </div>
         </Modal>
