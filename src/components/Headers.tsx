@@ -4,8 +4,10 @@ import { FormClose } from "grommet-icons";
 import { ContextUI } from "../../common/context";
 import Modal from "./Modal";
 import NewRecipeForm from "./NewRecipeForm";
+import { useTranslation } from "react-i18next";
 
 const Headers: React.FC = () => {
+  const { t } = useTranslation();
   const { openModal, setOpenModal } = useContext(ContextUI);
   return (
     <>
@@ -17,7 +19,7 @@ const Headers: React.FC = () => {
         justify={"center"}
       >
         <Heading level={1} size={"2rem"} margin="none" textAlign="center">
-          Receitas
+          {t("recipe")}
         </Heading>
         <Button
           primary
