@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { Box, Card, CardBody, CardFooter, CardHeader } from "grommet";
 import { Recipe } from "../../common/interfaces";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   recipes: Recipe[];
 }
 
 const RecipesList: React.FC<Props> = ({ recipes }) => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState<string>("");
   const [filteredResults, setFilteredResults] = useState([]);
 
@@ -33,7 +35,7 @@ const RecipesList: React.FC<Props> = ({ recipes }) => {
         pad={{ top: "2rem" }}
         background="url('/assets/foodheroimage.jpg')"
       >
-        <label htmlFor="search">Pesquisar Receitas</label>
+        <label htmlFor="search">{t("searchRecipe")}</label>
         <input type={"search"} onChange={(e) => handleSearch(e.target.value)} />
       </Box>
       <Box width={"100vw"} direction={"row"} justify={"center"}>

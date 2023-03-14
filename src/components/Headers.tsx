@@ -24,8 +24,8 @@ const Headers: React.FC = () => {
         <Button
           primary
           className="add-button"
-          label=" Adicionar Receita"
-          aria-label="adicionar receita"
+          label={t("addRecipe")}
+          aria-label={t("addRecipe")}
           onClick={() => setOpenModal(true)}
         />
       </Header>
@@ -47,7 +47,7 @@ const Headers: React.FC = () => {
               elevation="small"
               justify="between"
             >
-              <Text margin={{ left: "small" }}>Adicionar Receita</Text>
+              <Text margin={{ left: "small" }}>{t("addRecipe")}</Text>
               <Button
                 icon={<FormClose />}
                 onClick={() => setOpenModal(false)}
