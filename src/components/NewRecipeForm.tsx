@@ -46,73 +46,78 @@ const NewRecipeForm: React.FC<Props> = () => {
       <>
         <Box>
           <span>Step {formStep + 1} of 3</span>
-          <label htmlFor="text">
-            Nome da Receita
-            <input
-              {...register("recipeName")}
-              placeholder="Nome da Receita"
-              type="text"
-            ></input>
-          </label>
-        </Box>
-        {fields.map((ingredient, index) => (
-          <Box width={"100%"} margin={"1rem"} key={ingredient.id}>
-            <label>
-              Ingrediente
+          <Box className="form-wrapper">
+            <label htmlFor="text">
+              Nome da Receita
               <input
-                placeholder="Ingrediente"
-                {...register(`ingredients.${index}.name` as const, {
-                  required: true,
-                })}
-                defaultValue={ingredient.name}
+                {...register("recipeName")}
+                placeholder="Nome da Receita"
                 type="text"
-              />
+              ></input>
             </label>
-            <label>
-              Quantidade
-              <input
-                placeholder="Quantidade"
-                {...register(`ingredients.${index}.quantity.number` as const, {
-                  required: true,
-                })}
-                defaultValue={ingredient.quantity.number}
-                type="number"
-              />
-            </label>
-            <label>
-              Unidade de medida
-              <input
-                placeholder="Unidade"
-                {...register(
-                  `ingredients.${index}.quantity.unitMeasure` as const,
-                  {
-                    required: true,
-                  }
+            {fields.map((ingredient, index) => (
+              <div key={ingredient.id}>
+                <label>
+                  Ingrediente
+                  <input
+                    placeholder="Ingrediente"
+                    {...register(`ingredients.${index}.name` as const, {
+                      required: true,
+                    })}
+                    defaultValue={ingredient.name}
+                    type="text"
+                  />
+                </label>
+                <label>
+                  Quantidade
+                  <input
+                    placeholder="Quantidade"
+                    {...register(
+                      `ingredients.${index}.quantity.number` as const,
+                      {
+                        required: true,
+                      }
+                    )}
+                    defaultValue={ingredient.quantity.number}
+                    type="number"
+                  />
+                </label>
+                <label>
+                  Unidade de medida
+                  <input
+                    placeholder="Unidade"
+                    {...register(
+                      `ingredients.${index}.quantity.unitMeasure` as const,
+                      {
+                        required: true,
+                      }
+                    )}
+                    defaultValue={ingredient.quantity.unitMeasure}
+                    type="text"
+                  />
+                </label>
+                <br />
+                {fields.length > 1 && (
+                  <button type="button" onClick={() => remove(index)}>
+                    Remover
+                  </button>
                 )}
-                defaultValue={ingredient.quantity.unitMeasure}
-                type="text"
-              />
-            </label>
-            <br />
-            {fields.length > 1 && (
-              <button type="button" onClick={() => remove(index)}>
-                Remover
-              </button>
-            )}
+              </div>
+            ))}
           </Box>
-        ))}
-        <button
-          type="button"
-          onClick={() =>
-            append({
-              name: "",
-              quantity: { number: 0, unitMeasure: "grams" },
-            })
-          }
-        >
-          Adicionar Ingrediente
-        </button>
-        <button>Next</button>
+          <button
+            type="button"
+            onClick={() =>
+              append({
+                name: "",
+                quantity: { number: 0, unitMeasure: "grams" },
+              })
+            }
+          >
+            Adicionar Ingrediente
+          </button>
+          <button>Next</button>
+        </Box>
       </>
     );
   };

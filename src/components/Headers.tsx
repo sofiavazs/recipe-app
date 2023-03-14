@@ -53,13 +53,7 @@ const Headers: React.FC = () => {
                 onClick={() => setOpenModal(false)}
               />
             </Box>
-            <Box
-              pad={"1rem"}
-              style={{
-                border: "1px solid red",
-              }}
-              direction={"column"}
-            >
+            <Box pad={"1rem"} direction={"row"} overflow={"scroll"}>
               <NewRecipeForm />
             </Box>
           </Box>
