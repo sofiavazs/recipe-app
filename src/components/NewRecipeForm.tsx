@@ -1,6 +1,6 @@
-import { Box } from "grommet";
 import React, { useState } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
+import { Box, FormField, Select, TextInput } from "grommet";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { useFormData } from "../../common/context";
 
 interface Props {}
@@ -41,37 +41,35 @@ const NewRecipeForm: React.FC<Props> = () => {
     nextFormStep();
   };
 
+  const allOptions = ["gramas"];
+
   const RecipeNameAndIngredients = () => {
     return (
       <>
         <Box>
           <span>Step {formStep + 1} of 3</span>
           <Box className="form-wrapper">
-            <label htmlFor="text">
-              Nome da Receita
-              <input
-                {...register("recipeName")}
+            <FormField label="Nome da Receita">
+              <TextInput
                 placeholder="Nome da Receita"
-                type="text"
-              ></input>
-            </label>
+                {...register("recipeName")}
+              />
+            </FormField>
+
             {fields.map((ingredient, index) => (
               <div key={ingredient.id}>
-                <label>
-                  Ingrediente
-                  <input
+                <FormField label="Ingrediente">
+                  <TextInput
                     placeholder="Ingrediente"
                     {...register(`ingredients.${index}.name` as const, {
                       required: true,
                     })}
                     defaultValue={ingredient.name}
-                    type="text"
                   />
-                </label>
-                <label>
-                  Quantidade
-                  <input
-                    placeholder="Quantidade"
+                </FormField>
+                <FormField label="Quantidade">
+                  <TextInput
+                    placeholder="Quantidadde"
                     {...register(
                       `ingredients.${index}.quantity.number` as const,
                       {
@@ -81,22 +79,23 @@ const NewRecipeForm: React.FC<Props> = () => {
                     defaultValue={ingredient.quantity.number}
                     type="number"
                   />
-                </label>
-                <label>
-                  Unidade de medida
-                  <input
-                    placeholder="Unidade"
-                    {...register(
-                      `ingredients.${index}.quantity.unitMeasure` as const,
-                      {
-                        required: true,
-                      }
+                </FormField>
+
+                <FormField label="Unidade de medida">
+                  <Controller
+                    name={`ingredients.${index}.quantity.unitMeasure`}
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field: { onChange, value } }) => (
+                      <Select
+                        placeholder="unidade de medida"
+                        options={allOptions}
+                        value={value}
+                        onChange={onChange}
+                      />
                     )}
-                    defaultValue={ingredient.quantity.unitMeasure}
-                    type="text"
                   />
-                </label>
-                <br />
+                </FormField>
                 {fields.length > 1 && (
                   <button type="button" onClick={() => remove(index)}>
                     Remover
