@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, FormField, Select, TextInput } from "grommet";
+import { Box, FormField, Select, TextArea, TextInput } from "grommet";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { useFormData } from "../../common/context";
 
@@ -14,6 +14,7 @@ type FormValues = {
       unitMeasure: string;
     };
   }[];
+  instructionsField: string;
 };
 
 const NewRecipeForm: React.FC<Props> = () => {
@@ -47,7 +48,7 @@ const NewRecipeForm: React.FC<Props> = () => {
     return (
       <>
         <Box>
-          <span>Step {formStep + 1} of 3</span>
+          <h1>Step {formStep + 1} of 3</h1>
           <Box className="form-wrapper">
             <FormField label="Nome da Receita">
               <TextInput
@@ -55,7 +56,6 @@ const NewRecipeForm: React.FC<Props> = () => {
                 {...register("recipeName")}
               />
             </FormField>
-
             {fields.map((ingredient, index) => (
               <div key={ingredient.id}>
                 <FormField label="Ingrediente">
@@ -124,8 +124,19 @@ const NewRecipeForm: React.FC<Props> = () => {
   const RecipeInstructions = () => {
     return (
       <>
-        <span>Step {formStep + 1} of 3</span>
-        <textarea placeholder="test"></textarea>
+        <h1>Step {formStep + 1} of 3</h1>
+        <Box margin={{ top: "1rem" }}>
+          <label>
+            Instructions
+            <TextArea
+              className="instructions-input"
+              resize={false}
+              placeholder="Instruções"
+              {...register("instructionsField")}
+            />
+          </label>
+        </Box>
+
         <button onClick={prevFormStep}>Previous</button>
         <button>Next</button>
       </>
@@ -135,7 +146,7 @@ const NewRecipeForm: React.FC<Props> = () => {
   const RecipeSummary = () => {
     return (
       <>
-        <span>Step {formStep + 1} of 3</span>
+        <h1>Step {formStep + 1} of 3</h1>
         <div>{JSON.stringify(data)}</div>
         <button onClick={prevFormStep}>Previous</button>
         <button type="submit">Submit</button>

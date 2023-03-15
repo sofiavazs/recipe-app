@@ -33,8 +33,8 @@ const Headers: React.FC = () => {
         <Modal>
           <Box
             style={{
-              minWidth: "500px",
-              minHeight: "300px",
+              minWidth: "50vw",
+              minHeight: "50vh",
               backgroundColor: "white",
               borderRadius: "10px",
             }}
@@ -47,13 +47,20 @@ const Headers: React.FC = () => {
               elevation="small"
               justify="between"
             >
-              <Text margin={{ left: "small" }}>{t("addRecipe")}</Text>
+              <Text size="1.5rem" weight={600} margin={{ left: "small" }}>
+                {t("addRecipe")}
+              </Text>
               <Button
                 icon={<FormClose />}
                 onClick={() => setOpenModal(false)}
               />
             </Box>
-            <Box pad={"1rem"} direction={"row"} overflow={"scroll"}>
+            <Box
+              className="form-wrapper"
+              pad={"1rem"}
+              direction={"row"}
+              overflow={"scroll"}
+            >
               <NewRecipeForm />
             </Box>
           </Box>
