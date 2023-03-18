@@ -88,16 +88,16 @@ input[type="search"] {
 }
 
 .modal {
+  max-height: 85vh;
+
   h1 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
   }
-  &.form-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    padding: 1rem;
-    overflow: scroll;
+  header {
+    min-height: 3rem;
   }
+
   form {
     width: 100%;
 

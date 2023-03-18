@@ -73,7 +73,12 @@ const NewRecipeForm: React.FC<Props> = ({
               />
             </FormField>
             {fields.map((ingredient, index) => (
-              <div key={ingredient.id}>
+              <Box
+                key={ingredient.id}
+                border={{ color: "#58db4c" }}
+                margin={{ top: "1rem" }}
+                pad={"1rem"}
+              >
                 <FormField label="Ingrediente">
                   <TextInput
                     placeholder="Ingrediente"
@@ -114,26 +119,30 @@ const NewRecipeForm: React.FC<Props> = ({
                       />
                     )}
                   />
+                  <Box justify="evenly" direction="row" margin={"1rem"}>
+                    {fields.length > 1 && (
+                      <Button
+                        primary
+                        type="button"
+                        label={"Remover"}
+                        onClick={() => remove(index)}
+                      />
+                    )}
+                    <Button
+                      type="button"
+                      label="Adicionar Ingrediente"
+                      onClick={() =>
+                        append({
+                          name: "",
+                          quantity: { number: 0, unitMeasure: "grams" },
+                        })
+                      }
+                    />
+                  </Box>
                 </FormField>
-                {fields.length > 1 && (
-                  <button type="button" onClick={() => remove(index)}>
-                    Remover
-                  </button>
-                )}
-              </div>
+              </Box>
             ))}
           </Box>
-          <button
-            type="button"
-            onClick={() =>
-              append({
-                name: "",
-                quantity: { number: 0, unitMeasure: "grams" },
-              })
-            }
-          >
-            Adicionar Ingrediente
-          </button>
         </Box>
       </>
     );

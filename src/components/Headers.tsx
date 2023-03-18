@@ -13,6 +13,11 @@ const Headers: React.FC = () => {
   const nextFormStep = () => setFormStep(formStep + 1);
   const prevFormStep = () => setFormStep(formStep - 1);
 
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setFormStep(0);
+  };
+
   return (
     <>
       <Header
@@ -54,17 +59,9 @@ const Headers: React.FC = () => {
               <Text size="1.5rem" weight={600} margin={{ left: "small" }}>
                 {t("addRecipe")}
               </Text>
-              <Button
-                icon={<FormClose />}
-                onClick={() => setOpenModal(false)}
-              />
+              <Button icon={<FormClose />} onClick={handleCloseModal} />
             </Box>
-            <Box
-              className="form-wrapper"
-              pad={"1rem"}
-              direction={"row"}
-              overflow={"scroll"}
-            >
+            <Box pad={"1.5rem"} direction={"row"} overflow={"scroll"}>
               <NewRecipeForm
                 nextFormStep={nextFormStep}
                 previousFormStep={prevFormStep}
