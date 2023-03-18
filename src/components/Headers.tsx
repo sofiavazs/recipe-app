@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Box, Button, Header, Heading, Text } from "grommet";
-import { FormClose } from "grommet-icons";
+import { Add, FormClose } from "grommet-icons";
 import { ContextUI } from "../../common/context";
 import Modal from "./Modal";
 import NewRecipeForm from "./NewRecipeForm";
@@ -22,7 +22,7 @@ const Headers: React.FC = () => {
           {t("recipe")}
         </Heading>
         <Button
-          primary
+          icon={<Add />}
           className="add-button"
           label={t("addRecipe")}
           aria-label={t("addRecipe")}

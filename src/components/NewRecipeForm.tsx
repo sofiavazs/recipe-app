@@ -81,7 +81,10 @@ const NewRecipeForm: React.FC<Props> = () => {
                   />
                 </FormField>
 
-                <FormField label="Unidade de medida">
+                <FormField
+                  label="Unidade de medida"
+                  className="measure-unit-dropdown"
+                >
                   <Controller
                     name={`ingredients.${index}.quantity.unitMeasure`}
                     control={control}

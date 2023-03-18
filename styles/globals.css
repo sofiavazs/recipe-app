@@ -43,9 +43,27 @@ header.main-header {
 
 button.add-button {
   padding: 8px;
-  background-color: #2d9e3c;
+  background-color: #069126;
+  color: #fff;
+  letter-spacing: 1.25px;
   border: none;
   cursor: pointer;
+}
+
+button.add-button:hover {
+  background: #fff;
+  color: #333;
+  box-shadow: 0px 0px 0px 2px #58db4c;
+}
+
+button.add-button:hover svg {
+  fill: #333;
+  stroke: #333;
+}
+
+button.add-button svg {
+  fill: #fff;
+  stroke: #fff;
 }
 
 label[for="search"] {
@@ -73,7 +91,7 @@ input[type="search"] {
 .form-wrapper {
   display: flex;
   flex-direction: row;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   overflow: scroll;
 }
 
@@ -94,8 +112,6 @@ form {
   height: 19rem;
 }
 
-/* .form-wrapper label {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 1rem;
-} */
+.measure-unit-dropdown div:first-of-type {
+  border-bottom: none;
+}
