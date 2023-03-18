@@ -1,9 +1,21 @@
 import React, { useState } from "react";
-import { Box, FormField, Select, TextArea, TextInput } from "grommet";
+import {
+  Box,
+  Button,
+  Footer,
+  FormField,
+  Select,
+  TextArea,
+  TextInput,
+} from "grommet";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { useFormData } from "../../common/context";
 
-interface Props {}
+interface Props {
+  nextFormStep: () => void;
+  previousFormStep: () => void;
+  formStep: number;
+}
 
 type FormValues = {
   recipeName: string;
@@ -17,12 +29,16 @@ type FormValues = {
   instructionsField: string;
 };
 
-const NewRecipeForm: React.FC<Props> = () => {
+const NewRecipeForm: React.FC<Props> = ({
+  nextFormStep,
+  previousFormStep,
+  formStep,
+}) => {
   const { setFormValues } = useFormData();
   const { data } = useFormData();
-  const [formStep, setFormStep] = useState(0);
-  const nextFormStep = () => setFormStep(formStep + 1);
-  const prevFormStep = () => setFormStep(formStep - 1);
+  // const [formStep, setFormStep] = useState(0);
+  // const nextFormStep = () => setFormStep(formStep + 1);
+  // const prevFormStep = () => setFormStep(formStep - 1);
 
   const { register, control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
@@ -118,7 +134,6 @@ const NewRecipeForm: React.FC<Props> = () => {
           >
             Adicionar Ingrediente
           </button>
-          <button>Next</button>
         </Box>
       </>
     );
@@ -139,9 +154,6 @@ const NewRecipeForm: React.FC<Props> = () => {
             />
           </label>
         </Box>
-
-        <button onClick={prevFormStep}>Previous</button>
-        <button>Next</button>
       </>
     );
   };
@@ -151,7 +163,6 @@ const NewRecipeForm: React.FC<Props> = () => {
       <>
         <h1>Step {formStep + 1} of 3</h1>
         <div>{JSON.stringify(data)}</div>
-        <button onClick={prevFormStep}>Previous</button>
         <button type="submit">Submit</button>
       </>
     );

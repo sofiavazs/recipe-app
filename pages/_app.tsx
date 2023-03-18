@@ -3,7 +3,7 @@ import Head from "next/head";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import { Grommet } from "grommet";
 import { FormProvider, ContextUIProvider } from "../common/context";
-import "../styles/globals.css";
+import "../styles/globals.scss";
 import "./../public/translations/i18n";
 
 const App = ({ Component, pageProps }: AppProps) => {

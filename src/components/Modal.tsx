@@ -5,9 +5,10 @@ import { ContextUI } from "../../common/context";
 
 interface Props {
   children: ReactNode;
+  className?: string;
 }
 
-const Modal: React.FC<Props> = ({ children }) => {
+const Modal: React.FC<Props> = ({ children, className }) => {
   const { setOpenModal } = useContext(ContextUI);
   const modalRef = useRef<HTMLDivElement>(null);
   const closeModal = (e: any) => {
@@ -16,7 +17,7 @@ const Modal: React.FC<Props> = ({ children }) => {
     }
   };
   return createPortal(
-    <Layer ref={modalRef} onClick={(e) => closeModal(e)}>
+    <Layer ref={modalRef} onClick={(e) => closeModal(e)} className={className}>
       {children}
     </Layer>,
 

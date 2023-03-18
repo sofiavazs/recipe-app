@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Box, Button, Header, Heading, Text } from "grommet";
+import React, { useContext, useState } from "react";
+import { Box, Button, Footer, Header, Heading, Text } from "grommet";
 import { Add, FormClose } from "grommet-icons";
 import { ContextUI } from "../../common/context";
 import Modal from "./Modal";
@@ -9,6 +9,10 @@ import { useTranslation } from "react-i18next";
 const Headers: React.FC = () => {
   const { t } = useTranslation();
   const { openModal, setOpenModal } = useContext(ContextUI);
+  const [formStep, setFormStep] = useState(0);
+  const nextFormStep = () => setFormStep(formStep + 1);
+  const prevFormStep = () => setFormStep(formStep - 1);
+
   return (
     <>
       <Header
@@ -30,7 +34,7 @@ const Headers: React.FC = () => {
         />
       </Header>
       {openModal && (
-        <Modal>
+        <Modal className="modal">
           <Box
             style={{
               minWidth: "50vw",
@@ -61,8 +65,23 @@ const Headers: React.FC = () => {
               direction={"row"}
               overflow={"scroll"}
             >
-              <NewRecipeForm />
+              <NewRecipeForm
+                nextFormStep={nextFormStep}
+                previousFormStep={prevFormStep}
+                formStep={formStep}
+              />
             </Box>
+            <br />
+            <Footer pad="small" background={"white"}>
+              <Box justify="start">
+                {formStep > 0 && formStep < 3 && (
+                  <Button onClick={prevFormStep} label={"Previous"} />
+                )}
+              </Box>
+              {formStep < 2 && (
+                <Button onClick={nextFormStep} label={"Next"} primary />
+              )}
+            </Footer>
           </Box>
         </Modal>
       )}
