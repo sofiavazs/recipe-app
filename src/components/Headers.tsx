@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Box, Button, Footer, Header, Heading, Text } from "grommet";
 import { Add, FormClose } from "grommet-icons";
+import { useTranslation } from "react-i18next";
 import { ContextUI } from "../../common/context";
 import Modal from "./Modal";
 import NewRecipeForm from "./NewRecipeForm";
-import { useTranslation } from "react-i18next";
 
 const Headers: React.FC = () => {
   const { t } = useTranslation();
@@ -42,8 +42,9 @@ const Headers: React.FC = () => {
         <Modal className="modal">
           <Box
             style={{
-              minWidth: "50vw",
-              minHeight: "50vh",
+              minWidth: "75vw",
+              minHeight: "80vh",
+              maxHeight: "95vh",
               backgroundColor: "white",
               borderRadius: "10px",
             }}
@@ -57,7 +58,7 @@ const Headers: React.FC = () => {
               justify="between"
             >
               <Text size="1.5rem" weight={600} margin={{ left: "small" }}>
-                {t("addRecipe")}
+                {t("addRecipe")} - Step {formStep + 1} of 3
               </Text>
               <Button icon={<FormClose />} onClick={handleCloseModal} />
             </Box>
@@ -68,7 +69,7 @@ const Headers: React.FC = () => {
                 formStep={formStep}
               />
             </Box>
-            <br />
+
             <Footer pad="small" background={"white"}>
               <Box justify="start">
                 {formStep > 0 && formStep < 3 && (

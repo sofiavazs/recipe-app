@@ -10,10 +10,10 @@ const App = ({ Component, pageProps }: AppProps) => {
   const theme = {
     global: {
       font: {
-        family: "Roboto",
+        family: "Nunito",
         size: "18px",
         height: "20px",
-        color: "blue",
+        color: "black",
       },
     },
   };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -29,16 +29,9 @@ type FormValues = {
   instructionsField: string;
 };
 
-const NewRecipeForm: React.FC<Props> = ({
-  nextFormStep,
-  previousFormStep,
-  formStep,
-}) => {
+const NewRecipeForm: React.FC<Props> = ({ nextFormStep, formStep }) => {
   const { setFormValues } = useFormData();
   const { data } = useFormData();
-  // const [formStep, setFormStep] = useState(0);
-  // const nextFormStep = () => setFormStep(formStep + 1);
-  // const prevFormStep = () => setFormStep(formStep - 1);
 
   const { register, control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
@@ -48,6 +41,7 @@ const NewRecipeForm: React.FC<Props> = ({
     },
     mode: "onSubmit",
   });
+
   const { fields, remove, append } = useFieldArray({
     control,
     name: "ingredients",
@@ -58,13 +52,19 @@ const NewRecipeForm: React.FC<Props> = ({
     nextFormStep();
   };
 
+  const appendIngredient = () => {
+    append({
+      name: "",
+      quantity: { number: 0, unitMeasure: "grams" },
+    });
+  };
+
   const allOptions = ["gramas"];
 
   const RecipeNameAndIngredients = () => {
     return (
       <>
         <Box>
-          <h1>Step {formStep + 1} of 3</h1>
           <Box className="form-wrapper">
             <FormField label="Nome da Receita">
               <TextInput
@@ -75,9 +75,11 @@ const NewRecipeForm: React.FC<Props> = ({
             {fields.map((ingredient, index) => (
               <Box
                 key={ingredient.id}
-                border={{ color: "#58db4c" }}
+                border={{ color: "#58db4c", style: "solid" }}
                 margin={{ top: "1rem" }}
                 pad={"1rem"}
+                round={"4px"}
+                elevation={"small"}
               >
                 <FormField label="Ingrediente">
                   <TextInput
@@ -128,21 +130,19 @@ const NewRecipeForm: React.FC<Props> = ({
                         onClick={() => remove(index)}
                       />
                     )}
-                    <Button
-                      type="button"
-                      label="Adicionar Ingrediente"
-                      onClick={() =>
-                        append({
-                          name: "",
-                          quantity: { number: 0, unitMeasure: "grams" },
-                        })
-                      }
-                    />
                   </Box>
                 </FormField>
               </Box>
             ))}
           </Box>
+        </Box>
+        <Box pad={"small"}>
+          <Button
+            type="button"
+            label="Adicionar Ingrediente"
+            onClick={appendIngredient}
+            margin={{ top: "0.5rem" }}
+          />
         </Box>
       </>
     );
@@ -151,7 +151,6 @@ const NewRecipeForm: React.FC<Props> = ({
   const RecipeInstructions = () => {
     return (
       <>
-        <h1>Step {formStep + 1} of 3</h1>
         <Box margin={{ top: "1rem" }}>
           <label>
             Instructions
@@ -170,7 +169,6 @@ const NewRecipeForm: React.FC<Props> = ({
   const RecipeSummary = () => {
     return (
       <>
-        <h1>Step {formStep + 1} of 3</h1>
         <div>{JSON.stringify(data)}</div>
         <button type="submit">Submit</button>
       </>
