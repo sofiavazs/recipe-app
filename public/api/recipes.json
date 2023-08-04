@@ -6,16 +6,16 @@
     "instructions": "cook pasta blah blah",
     "difficultyLevel": "easy",
     "cookingTime": "30 mins",
-    "imageUrl": "/assets/carbonara.jpg"
+    "imageUrl": "/assets/images/carbonara.jpg"
   },
   {
     "id": "2",
     "name": "Mushroom Risotto",
     "ingredients": " 200g rice, mushrooms etc",
-    "instructions": "cook rice blah blah",
+    "instructions": "Jelly beans tart cupcake soufflé chupa chups. ",
     "difficultyLevel": "medium",
     "cookingTime": "40 mins",
-    "imageUrl": "/assets/carbonara.jpg"
+    "imageUrl": "/assets/images/carbonara.jpg"
   },
   {
     "id": "3",
@@ -24,6 +24,6 @@
     "instructions": "grill salmon",
     "difficultyLevel": "medium",
     "cookingTime": "35 mins",
-    "imageUrl": "/assets/carbonara.jpg"
+    "imageUrl": "/assets/images/carbonara.jpg"
   }
 ]

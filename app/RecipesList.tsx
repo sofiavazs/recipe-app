@@ -1,18 +1,28 @@
-import React, { useEffect, useState, useTransition } from "react";
-import { Box, Card, CardBody, CardFooter, CardHeader } from "grommet";
-import { Recipe } from "../../common/interfaces";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
+
+import { Recipe } from "../common/interfaces";
+import { useIntl } from "react-intl";
+import {
+  Box,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Center,
+  Flex,
+  Input,
+} from "@chakra-ui/react";
 
 interface Props {
   recipes: Recipe[];
 }
 
 const RecipesList: React.FC<Props> = ({ recipes }) => {
-  const { t } = useTranslation();
+  // const { formatMessage } = useIntl();
   const [search, setSearch] = useState<string>("");
-  const [filteredResults, setFilteredResults] = useState([]);
+  const [filteredResults, setFilteredResults] = useState<Recipe[]>([]);
 
-  const handleSearch = (searchValue) => {
+  const handleSearch = (searchValue: string) => {
     if (searchValue !== "") {
       setSearch(searchValue);
       const filteredRecipes = recipes.filter((item) => {
@@ -25,32 +35,39 @@ const RecipesList: React.FC<Props> = ({ recipes }) => {
     }
   };
   useEffect(() => {}, [search, filteredResults]);
-
   return (
-    <Box direction="column">
-      <Box
+    <>
+      <Center
         width={"100vw"}
         height={"50vh"}
-        justify={"center"}
-        pad={{ top: "2rem" }}
-        background="url('/assets/foodheroimage.jpg')"
+        background="url('/assets/images/foodheroimage.jpg')"
+        backgroundSize={"cover"}
+        backgroundRepeat={"no-repeat"}
+        justifyContent={"center"}
+        flexDirection={"column"}
       >
-        <label htmlFor="search">{t("searchRecipe")}</label>
-        <input type={"search"} onChange={(e) => handleSearch(e.target.value)} />
-      </Box>
-      <Box width={"100vw"} direction={"row"} justify={"center"}>
+        <label style={{ fontSize: "3rem" }} htmlFor="search">
+          Search
+        </label>
+        <Input
+          width="50%"
+          type={"search"}
+          background={"#fff"}
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+      </Center>
+      <Center width={"100vw"}>
         {search.length > 1
           ? filteredResults.map((filteredItem) => (
               <Card
                 key={filteredItem.id}
-                pad={"1rem"}
                 margin={"1rem"}
                 height={"13rem"}
                 width={"13rem"}
                 background="light-1"
               >
                 <CardHeader>{filteredItem.name}</CardHeader>
-                <CardBody pad="medium">{filteredItem.instructions}</CardBody>
+                <CardBody>{filteredItem.instructions}</CardBody>
                 <CardFooter>
                   {filteredItem.difficultyLevel}
                   {filteredItem.cookingTime}
@@ -61,22 +78,21 @@ const RecipesList: React.FC<Props> = ({ recipes }) => {
             recipes.map((recipe, i) => (
               <Card
                 key={i}
-                pad={"1rem"}
                 margin={"1rem"}
-                height={"13rem"}
-                width={"13rem"}
-                background="light-1"
+                width={"25rem"}
+                height={"25rem"}
+                variant={"elevated"}
               >
                 <CardHeader>{recipe.name}</CardHeader>
-                <CardBody pad="medium">{recipe.instructions}</CardBody>
-                <CardFooter>
-                  {recipe.difficultyLevel}
-                  {recipe.cookingTime}
+                <CardBody>{recipe.instructions}</CardBody>
+                <CardFooter justifyContent={"space-between"}>
+                  <span>{recipe.difficultyLevel}</span>
+                  <span>{recipe.cookingTime}</span>
                 </CardFooter>
               </Card>
             ))}
-      </Box>
-    </Box>
+      </Center>
+    </>
   );
 };
 
